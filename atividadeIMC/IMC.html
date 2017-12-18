@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Calcule seu IMC</title>
+
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+    <script>
+
+    function calcular() {
+
+        var peso = parseFloat(document.dados.valor1.value);
+        var altura = parseFloat(document.dados.valor2.value);
+
+        if (document.dados.valor1.value.length == 0 ||
+                isNaN(peso)) {
+            //window.alert("Informe o primeiro valor corretamente!");
+            document.getElementById("grupoV1").classList.add("has-error");
+            document.getElementById("alertaV1").style.display = "block";
+            document.dados.valor1.value = "" ;
+            document.dados.valor1.focus();
+            return;
+        }
+
+        document.getElementById("grupoV1").classList.remove("has-error");
+        document.getElementById("alertaV1").style.display = "none";
+
+        if (document.dados.valor2.value.length == 0 ||
+            isNaN(altura)) {
+                //window.alert("Informe o segundo valor corretamente!");
+                document.getElementById("grupoV2").classList.add("has-error");
+                document.getElementById("alertaV2").style.display = "block";
+                document.dados.valor2.value = "" ;
+                document.dados.valor2.focus();
+                return;
+        }
+
+        document.getElementById("grupoV2").classList.remove("has-error");
+        document.getElementById("alertaV2").style.display = "none";
+
+
+
+        var imc = peso/(altura*altura)
+
+            //window.alert(document.dados.valor1.value.length);
+
+            document.dados.resultado.value = imc;
+
+        }
+
+    </script>
+  </head>
+  <body>
+    <div class="container">
+
+        <div class="jumbotron text-center">
+            <h2>Calcule seu IMC</h2>
+            <h3>by Dasayeve Xavier </h3>
+        </div>
+
+    <form name="dados">
+
+        <div id="grupoV1" class="form-group">
+            <label for="valor1">Seu peso em kg:</label>
+            <input name="valor1" type="text" class="form-control">
+
+            <div class="alert alert-danger" style="display: none" id="alertaV1">
+                Informe o primeiro número corretamente.
+            </div>
+        </div>
+
+        <div id="grupoV2" class="form-group">
+            <label for="valor2">Sua altura em metros:</label>
+            <input name="valor2" type="text" class="form-control">
+
+            <div class="alert alert-danger" style="display: none" id="alertaV2">
+                  Informe o segundo número corretamente.
+            </div>
+            <div id="grupoRes" class="form-group">
+                <label for="resultado">Seu IMC é:</label>
+                <input name="resultado" type="text" disabled="disabled" class="form-control">
+            </div>
+
+            <button type="button" class="btn btn-primary"
+                    onclick="calcular()">Calcular</button>
+            <button type="reset" class="btn btn-primary">Limpar</button>
+        </form>
+
+    </div>
+
+        </div>
+
+  </body>
+</html>
